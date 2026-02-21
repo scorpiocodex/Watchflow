@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\generators\expanders.py
+# hypothesis_version: 6.151.9
+
+[100, 'G', 'LM', 'chordal_cycle_graph', 'd must be even', 'directed', 'is_regular_expander', 'multigraph', 'name', 'paley_graph', 'seed', 'weight']

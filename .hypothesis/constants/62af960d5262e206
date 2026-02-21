@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\traversal\depth_first_search.py
+# hypothesis_version: 6.151.9
+
+['dfs_edges', 'dfs_labeled_edges', 'dfs_postorder_nodes', 'dfs_predecessors', 'dfs_preorder_nodes', 'dfs_successors', 'dfs_tree', 'forward', 'nontree', 'reverse', 'reverse-depth_limit']

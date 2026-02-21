@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\classes\filters.py
+# hypothesis_version: 6.151.9
+
+['hide_diedges', 'hide_edges', 'hide_multidiedges', 'hide_multiedges', 'hide_nodes', 'no_filter', 'show_diedges', 'show_edges', 'show_multidiedges', 'show_multiedges', 'show_nodes']

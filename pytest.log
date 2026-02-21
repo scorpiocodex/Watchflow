@@ -1,0 +1,152 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.0, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\scorp\dev\python\Project\watchflow
+configfile: pyproject.toml
+plugins: anyio-4.12.0, hypothesis-6.151.9, asyncio-1.3.0, cov-7.0.0, mock-3.15.1, timeout-2.4.0, respx-0.22.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 117 items
+
+tests/test_cli/test_commands.py::test_info_command PASSED                [  0%]
+tests/test_cli/test_commands.py::test_info_shows_versions PASSED         [  1%]
+tests/test_cli/test_commands.py::test_version_flag PASSED                [  2%]
+tests/test_cli/test_commands.py::test_version_short_flag PASSED          [  3%]
+tests/test_cli/test_commands.py::test_doctor_command PASSED              [  4%]
+tests/test_cli/test_commands.py::test_doctor_shows_packages PASSED       [  5%]
+tests/test_cli/test_commands.py::test_validate_command_valid PASSED      [  5%]
+tests/test_cli/test_commands.py::test_validate_command_shows_summary PASSED [  6%]
+tests/test_cli/test_commands.py::test_validate_command_invalid PASSED    [  7%]
+tests/test_cli/test_commands.py::test_validate_missing_config PASSED     [  8%]
+tests/test_cli/test_commands.py::test_explain_command PASSED             [  9%]
+tests/test_cli/test_commands.py::test_explain_python_file_detects_intent PASSED [ 10%]
+tests/test_cli/test_commands.py::test_explain_requirements_file PASSED   [ 11%]
+tests/test_cli/test_commands.py::test_explain_dockerfile PASSED          [ 11%]
+tests/test_cli/test_commands.py::test_explain_unmatched_file PASSED      [ 12%]
+tests/test_cli/test_commands.py::test_graph_command PASSED               [ 13%]
+tests/test_cli/test_commands.py::test_graph_missing_pipeline PASSED      [ 14%]
+tests/test_cli/test_commands.py::test_plugins_command PASSED             [ 15%]
+tests/test_cli/test_commands.py::test_plugins_shows_all_builtins PASSED  [ 16%]
+tests/test_cli/test_commands.py::test_plugins_shows_registration_count PASSED [ 17%]
+tests/test_cli/test_commands.py::test_status_command PASSED              [ 17%]
+tests/test_cli/test_commands.py::test_status_shows_watchers PASSED       [ 18%]
+tests/test_cli/test_commands.py::test_status_missing_config PASSED       [ 19%]
+tests/test_cli/test_commands.py::test_init_creates_config PASSED         [ 20%]
+tests/test_cli/test_commands.py::test_init_includes_project_name PASSED  [ 21%]
+tests/test_cli/test_commands.py::test_init_no_overwrite_by_default PASSED [ 22%]
+tests/test_config/test_loader.py::TestGenerateExampleConfig::test_default_project_name PASSED [ 23%]
+tests/test_config/test_loader.py::TestGenerateExampleConfig::test_custom_project_name PASSED [ 23%]
+tests/test_config/test_loader.py::TestGenerateExampleConfig::test_contains_required_keys PASSED [ 24%]
+tests/test_config/test_loader.py::TestGenerateExampleConfig::test_is_valid_yaml PASSED [ 25%]
+tests/test_config/test_loader.py::TestGenerateExampleConfig::test_generated_config_passes_validation PASSED [ 26%]
+tests/test_config/test_loader.py::TestLoadConfig::test_load_valid_file PASSED [ 27%]
+tests/test_config/test_loader.py::TestLoadConfig::test_missing_file_raises_config_error PASSED [ 28%]
+tests/test_config/test_loader.py::TestLoadConfig::test_broken_yaml_raises_config_error PASSED [ 29%]
+tests/test_config/test_loader.py::TestLoadConfig::test_empty_yaml_is_valid PASSED [ 29%]
+tests/test_config/test_loader.py::TestLoadConfig::test_invalid_pipeline_ref_raises PASSED [ 30%]
+tests/test_config/test_loader.py::TestValidateConfig::test_valid_empty_dict PASSED [ 31%]
+tests/test_config/test_loader.py::TestValidateConfig::test_invalid_raises_config_error PASSED [ 32%]
+tests/test_config/test_schema.py::TestCommandConfig::test_defaults PASSED [ 33%]
+tests/test_config/test_schema.py::TestCommandConfig::test_invalid_timeout PASSED [ 34%]
+tests/test_config/test_schema.py::TestCommandConfig::test_retry_cap PASSED [ 35%]
+tests/test_config/test_schema.py::TestPipelineConfig::test_valid_dag PASSED [ 35%]
+tests/test_config/test_schema.py::TestPipelineConfig::test_cycle_raises PASSED [ 36%]
+tests/test_config/test_schema.py::TestPipelineConfig::test_missing_dep_raises PASSED [ 37%]
+tests/test_config/test_schema.py::TestWatcherConfig::test_debounce_bounds PASSED [ 38%]
+tests/test_config/test_schema.py::TestWatcherConfig::test_valid PASSED   [ 39%]
+tests/test_config/test_schema.py::TestGlobalConfig::test_invalid_pipeline_ref PASSED [ 40%]
+tests/test_config/test_schema.py::TestGlobalConfig::test_empty_is_valid PASSED [ 41%]
+tests/test_core/test_event_bus.py::test_publish_delivers_to_subscriber PASSED [ 41%]
+tests/test_core/test_event_bus.py::test_multiple_subscribers_all_receive PASSED [ 42%]
+tests/test_core/test_event_bus.py::test_unsubscribe_stops_delivery PASSED [ 43%]
+tests/test_core/test_event_bus.py::test_full_queue_drops_event PASSED    [ 44%]
+tests/test_core/test_event_bus.py::test_subscriber_count PASSED          [ 45%]
+tests/test_core/test_signal_router.py::TestSignalRouter::test_routes_matching_events PASSED [ 46%]
+tests/test_core/test_signal_router.py::TestSignalRouter::test_returns_none_for_empty_events PASSED [ 47%]
+tests/test_core/test_signal_router.py::TestSignalRouter::test_returns_none_for_unmatched_events PASSED [ 47%]
+tests/test_core/test_signal_router.py::TestSignalRouter::test_decision_has_context_keys PASSED [ 48%]
+tests/test_core/test_signal_router.py::TestSignalRouter::test_decision_confidence_in_range PASSED [ 49%]
+tests/test_core/test_signal_router.py::TestSignalRouter::test_source_events_propagated PASSED [ 50%]
+tests/test_core/test_state_machine.py::test_initial_state_is_idle PASSED [ 51%]
+tests/test_core/test_state_machine.py::test_valid_transition_idle_to_watching PASSED [ 52%]
+tests/test_core/test_state_machine.py::test_invalid_transition_raises PASSED [ 52%]
+tests/test_core/test_state_machine.py::test_full_happy_path PASSED       [ 53%]
+tests/test_core/test_state_machine.py::test_recovering_path PASSED       [ 54%]
+tests/test_core/test_state_machine.py::test_shutting_down_is_terminal PASSED [ 55%]
+tests/test_core/test_state_machine.py::test_transition_publishes_state_event PASSED [ 56%]
+tests/test_core/test_state_machine.py::test_can_transition_check PASSED  [ 57%]
+tests/test_core/test_task_supervisor.py::test_spawn_simple_coroutine PASSED [ 58%]
+tests/test_core/test_task_supervisor.py::test_active_names_tracks_running_tasks PASSED [ 58%]
+tests/test_core/test_task_supervisor.py::test_cancel_all_stops_tasks PASSED [ 59%]
+tests/test_core/test_task_supervisor.py::test_spawn_with_factory_runs_factory PASSED [ 60%]
+tests/test_core/test_task_supervisor.py::test_spawn_restart_retries_on_failure PASSED [ 61%]
+tests/test_core/test_task_supervisor.py::test_spawn_restart_requires_factory PASSED [ 62%]
+tests/test_core/test_task_supervisor.py::test_supervised_reraises_after_max_restarts PASSED [ 63%]
+tests/test_core/test_task_supervisor.py::test_active_names_empty_initially PASSED [ 64%]
+tests/test_core/test_task_supervisor.py::test_cancel_all_idempotent_when_empty PASSED [ 64%]
+tests/test_core/test_wal.py::test_wal_initializes_db PASSED              [ 65%]
+tests/test_core/test_wal.py::test_wal_record_and_replay_fs_event PASSED  [ 66%]
+tests/test_core/test_wal.py::test_wal_record_intent_event PASSED         [ 67%]
+tests/test_core/test_wal.py::test_wal_clear PASSED                       [ 68%]
+tests/test_execution/test_dag_engine.py::test_dry_run_command_success PASSED [ 69%]
+tests/test_execution/test_dag_engine.py::test_simple_command_success PASSED [ 70%]
+tests/test_execution/test_dag_engine.py::test_failing_command PASSED     [ 70%]
+tests/test_execution/test_dag_engine.py::test_fail_fast_skips_dependents PASSED [ 71%]
+tests/test_execution/test_dag_engine.py::test_parallel_execution_order PASSED [ 72%]
+tests/test_execution/test_dag_engine.py::test_template_substitution PASSED [ 73%]
+tests/test_execution/test_dag_engine.py::test_total_timeout PASSED       [ 74%]
+tests/test_execution/test_dag_engine.py::test_retry_on_failure PASSED    [ 75%]
+tests/test_execution/test_dag_engine.py::test_visualize PASSED           [ 76%]
+tests/test_hooks/test_plugin_system.py::test_sync_callback_fired PASSED  [ 76%]
+tests/test_hooks/test_plugin_system.py::test_async_callback_fired PASSED [ 77%]
+tests/test_hooks/test_plugin_system.py::test_failing_callback_does_not_propagate PASSED [ 78%]
+tests/test_hooks/test_plugin_system.py::test_priority_ordering PASSED    [ 79%]
+tests/test_hooks/test_plugin_system.py::test_list_registrations PASSED   [ 80%]
+tests/test_hooks/test_plugin_system.py::test_no_registrations_fires_cleanly PASSED [ 81%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_detects_run_tests_for_py_files PASSED [ 82%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_detects_install_deps PASSED [ 82%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_detects_docker_build PASSED [ 83%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_no_intent_for_unmatched PASSED [ 84%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_empty_events_returns_none PASSED [ 85%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_explain_returns_all_rules PASSED [ 86%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_user_rule_adds_custom_rule PASSED [ 87%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_user_rule_overrides_builtin_by_name PASSED [ 88%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_confidence_ordering PASSED [ 88%]
+tests/test_intelligence/test_intent_detector.py::TestIntentDetector::test_allowed_pipelines_filtering PASSED [ 89%]
+tests/test_intelligence/test_intent_detector.py::TestComputeConfidence::test_zero_total_is_zero PASSED [ 90%]
+tests/test_intelligence/test_intent_detector.py::TestComputeConfidence::test_full_match_is_high PASSED [ 91%]
+tests/test_intelligence/test_intent_detector.py::TestComputeConfidence::test_no_match_is_low PASSED [ 92%]
+tests/test_intelligence/test_intent_detector.py::TestComputeConfidence::test_confidence_in_range PASSED [ 93%]
+tests/test_telemetry/test_metrics.py::test_telemetry_store_initializes_db PASSED [ 94%]
+tests/test_telemetry/test_metrics.py::test_telemetry_store_records_pipeline_event PASSED [ 94%]
+tests/test_telemetry/test_metrics.py::test_telemetry_store_memory_metrics PASSED [ 95%]
+tests/test_watchers/test_debounce.py::TestAdaptiveDebouncer::test_no_events_returns_base PASSED [ 96%]
+tests/test_watchers/test_debounce.py::TestAdaptiveDebouncer::test_burst_events_returns_max PASSED [ 97%]
+tests/test_watchers/test_debounce.py::TestAdaptiveDebouncer::test_idle_events_returns_min PASSED [ 98%]
+tests/test_watchers/test_debounce.py::TestAdaptiveDebouncer::test_single_event_returns_base PASSED [ 99%]
+tests/test_watchers/test_debounce.py::TestAdaptiveDebouncer::test_delay_within_bounds PASSED [100%]
+
+============================== warnings summary ===============================
+..\..\..\..\AppData\Roaming\Python\Python314\site-packages\typer\params.py:206
+  C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\typer\params.py:206: DeprecationWarning: The 'is_flag' and 'flag_value' parameters are not supported by Typer and will be removed entirely in a future release.
+    return OptionInfo(
+
+tests/test_intelligence/test_intent_detector.py::TestComputeConfidence::test_confidence_in_range
+  C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\_pytest\unraisableexception.py:67: PytestUnraisableExceptionWarning: Exception ignored while calling deallocator <function _ProactorBasePipeTransport.__del__ at 0x0000021AFFDB66C0>: None
+  
+  Traceback (most recent call last):
+    File "C:\Python314\Lib\asyncio\proactor_events.py", line 116, in __del__
+      _warn(f"unclosed transport {self!r}", ResourceWarning, source=self)
+                                 ^^^^^^^^
+    File "C:\Python314\Lib\asyncio\proactor_events.py", line 80, in __repr__
+      info.append(f'fd={self._sock.fileno()}')
+                        ~~~~~~~~~~~~~~~~~^^
+    File "C:\Python314\Lib\asyncio\windows_utils.py", line 102, in fileno
+      raise ValueError("I/O operation on closed pipe")
+  ValueError: I/O operation on closed pipe
+  
+  
+    warnings.warn(pytest.PytestUnraisableExceptionWarning(msg))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 117 passed, 2 warnings in 5.99s =======================

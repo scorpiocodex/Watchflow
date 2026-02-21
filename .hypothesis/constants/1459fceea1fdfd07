@@ -1,0 +1,4 @@
+# file: /home/san/project/portfolio/watchflow/src/watchflow/core/signal_router.py
+# hypothesis_version: 6.151.9
+
+['changed_file', 'event_type', 'intent', 'pipeline', 'signal_router.routed', 'watcher']

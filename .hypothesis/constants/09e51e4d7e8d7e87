@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\connectivity\disjoint_paths.py
+# hypothesis_version: 6.151.9
+
+['G', 'auxiliary', 'auxiliary?', 'capacity', 'cutoff', 'edge_disjoint_paths', 'flow', 'flow_func', 'flow_value', 'id', 'inf', 'mapping', 'node_disjoint_paths', 'residual', 'two_phase', 'value_only']

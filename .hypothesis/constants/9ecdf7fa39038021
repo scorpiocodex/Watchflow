@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\minors\contraction.py
+# hypothesis_version: 6.151.9
+
+['contracted_edge', 'contracted_nodes', 'contraction', 'density', 'equivalence_classes', 'graph', 'identified_nodes', 'nedges', 'nnodes', 'not copy', 'quotient_graph', 'weight']

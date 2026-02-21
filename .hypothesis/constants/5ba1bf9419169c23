@@ -1,0 +1,4 @@
+# file: /home/san/project/portfolio/watchflow/src/watchflow/plugins/builtin.py
+# hypothesis_version: 6.151.9
+
+[100, 200, 'notification', 'repeat_failure']

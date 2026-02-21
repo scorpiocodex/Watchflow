@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\centrality\second_order.py
+# hypothesis_version: 6.151.9
+
+['Empty graph.', 'Non connected graph.', 'directed', 'weight']

@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\classes\digraph.py
+# hypothesis_version: 6.151.9
+
+['DiGraph', '_adj', '_pred', '_succ', 'adj', 'backend', 'degree', 'digraph__new__', 'edges', 'in_degree', 'in_edges', 'out_degree', 'out_edges', 'pred', 'succ']

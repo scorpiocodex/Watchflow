@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\wiener.py
+# hypothesis_version: 6.151.9
+
+['directed', 'gutman_index', 'hyper_wiener_index', 'inf', 'multigraph', 'schultz_index', 'weight', 'wiener_index']

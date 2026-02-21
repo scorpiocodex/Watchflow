@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\relabel.py
+# hypothesis_version: 6.151.9
+
+['decreasing degree', 'default', 'increasing degree', 'not copy', 'relabel_nodes', 'sorted']

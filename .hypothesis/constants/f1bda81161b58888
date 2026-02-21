@@ -1,0 +1,4 @@
+# file: /home/san/project/portfolio/watchflow/src/watchflow/core/task_supervisor.py
+# hypothesis_version: 6.151.9
+
+[5.0, 'supervisor.cancelled', 'supervisor.completed', 'supervisor.failed', 'supervisor.spawned']

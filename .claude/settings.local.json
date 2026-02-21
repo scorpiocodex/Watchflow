@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 show:*)",
+      "Bash(pip3 list:*)",
+      "Bash(pip install:*)",
+      "Bash(pytest:*)",
+      "Bash(ruff check:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(watchflow:*)",
+      "Bash(mypy:*)"
+    ]
+  }
+}

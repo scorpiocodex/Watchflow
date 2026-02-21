@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\swap.py
+# hypothesis_version: 6.151.9
+
+[100, 'Graph not connected', 'directed_edge_swap', 'double_edge_swap', 'undirected']

@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\dominance.py
+# hypothesis_version: 6.151.9
+
+['dominance_frontiers', 'immediate_dominators', 'start is not in G', 'undirected']

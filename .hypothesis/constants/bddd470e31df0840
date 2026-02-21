@@ -1,0 +1,4 @@
+# file: /home/san/project/portfolio/watchflow/src/watchflow/core/events.py
+# hypothesis_version: 6.151.9
+
+[0.0, 'completed', 'created', 'deleted', 'failed', 'filesystem', 'info', 'intent', 'modified', 'moved', 'pipeline', 'skipped', 'started', 'state', 'step_completed', 'step_failed', 'step_started', 'system']

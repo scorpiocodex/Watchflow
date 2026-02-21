@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\bipartite\matching.py
+# hypothesis_version: 6.151.9
+
+['coo', 'eppstein_matching', 'inf', 'maximum_matching', 'to_vertex_cover', 'weight']

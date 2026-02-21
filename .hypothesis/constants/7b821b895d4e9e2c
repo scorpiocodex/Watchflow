@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\cluster.py
+# hypothesis_version: 6.151.9
+
+['all_triangles', 'average_clustering', 'clustering', 'directed', 'generalized_degree', 'multigraph', 'square_clustering', 'transitivity', 'triangles', 'weight']

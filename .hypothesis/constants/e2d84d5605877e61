@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\bridges.py
+# hypothesis_version: 6.151.9
+
+['bridges', 'directed', 'has_bridges', 'inf', 'local_bridges', 'multigraph', 'weight']

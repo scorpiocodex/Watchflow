@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\regular.py
+# hypothesis_version: 6.151.9
+
+[2.0, 'Graph has no nodes.', 'directed', 'is_k_regular', 'is_regular', 'k_factor', 'multigraph', 'weight']

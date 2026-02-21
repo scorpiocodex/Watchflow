@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\drawing\nx_latex.py
+# hypothesis_version: 6.151.9
+
+['      \\begin{scope}', '  \\draw', '-', ';\n', '[', '[]', ']', 'adj', 'edge_label', 'edge_label_options', 'edge_options', 'label', 'loop', 'loop,', 'multigraph', 'node_label', 'node_options', 'pos', 'to_latex', 'to_latex_raw', 'w', 'write_latex']

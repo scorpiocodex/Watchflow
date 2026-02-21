@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\tree\mst.py
+# hypothesis_version: 6.151.9
+
+[0.0, 1.0, 'EdgePartition', 'SpanningTreeIterator', 'boruvka', 'borůvka', 'data', 'directed', 'inf', 'kruskal', 'multigraph', 'partition', 'prim', 'random_spanning_tree', 'weight']

@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\link_prediction.py
+# hypothesis_version: 6.151.9
+
+[0.001, 0.8, 'adamic_adar_index', 'community', 'directed', 'inf', 'jaccard_coefficient', 'multigraph', 'within_inter_cluster']

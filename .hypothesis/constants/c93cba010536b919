@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\dev\python\Project\watchflow\src\watchflow\core\signal_router.py
+# hypothesis_version: 6.151.9
+
+['IntentResult', 'changed_file', 'event_type', 'intent', 'pipeline', 'signal_router.routed', 'speculate', 'watcher']

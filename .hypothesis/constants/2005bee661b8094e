@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\dominating.py
+# hypothesis_version: 6.151.9
+
+['directed', 'dominating_set', 'is_dominating_set']

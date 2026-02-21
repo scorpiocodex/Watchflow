@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\connectivity\connectivity.py
+# hypothesis_version: 6.151.9
+
+['G', 'auxiliary', 'auxiliary?', 'capacity', 'cutoff', 'edge_connectivity', 'flow_func', 'mapping', 'node_connectivity', 'residual', 'two_phase']

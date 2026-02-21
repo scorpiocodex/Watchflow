@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\chains.py
+# hypothesis_version: 6.151.9
+
+['chain_decomposition', 'directed', 'forward', 'multigraph', 'nontree', 'parent']

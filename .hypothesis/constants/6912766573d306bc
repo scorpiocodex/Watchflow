@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\generators\geometric.py
+# hypothesis_version: 6.151.9
+
+[0.1, 0.4, 'geometric_edges', 'kappa', 'p must be >= 1', 'pos', 'pos_name', 'q must be >= 0', 'r must be >= 0', 'radius', 'theta', 'waxman_graph', 'weight']

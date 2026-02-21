@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\generators\triads.py
+# hypothesis_version: 6.151.9
+
+['003', '012', '021C', '021D', '021U', '030C', '030T', '102', '111D', '111U', '120C', '120D', '120U', '201', '210', '300', 'ab', 'abc', 'ac', 'ba', 'bc', 'ca', 'cb', 'triad_graph']

@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\connectivity\edge_augmentation.py
+# hypothesis_version: 6.151.9
+
+['MetaEdge', 'directed', 'generator', 'is_k_edge_connected', 'k_edge_augmentation', 'mapping', 'members', 'meta_uv', 'multigraph', 'no available edges', 'uv', 'w', 'weight']
