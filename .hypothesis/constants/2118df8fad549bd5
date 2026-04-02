@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\cli\daemon.py
-# hypothesis_version: 6.151.9
-
-[512, '--config', '-c', '-m', '.watchflow', '1', 'Config file path.', 'PYTHONIOENCODING', 'PYTHONUTF8', 'WATCHFLOW_DAEMON', 'WatchFlow Daemon', 'a', 'daemon.log', 'daemon.pid', 'run', 'utf-8', 'watchflow', 'win32']

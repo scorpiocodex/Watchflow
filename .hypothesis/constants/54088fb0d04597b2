@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\dag.py
-# hypothesis_version: 6.151.9
-
-['Graph has no nodes.', 'ancestors', 'antichains', 'dag_longest_path', 'dag_to_branching', 'default_weight', 'descendants', 'is_aperiodic', 'multigraph', 'topological_sort', 'transitive_closure', 'transitive_reduction', 'undirected', 'weight']

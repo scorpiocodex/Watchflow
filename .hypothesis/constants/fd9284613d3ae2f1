@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\convert.py
-# hypothesis_version: 6.151.9
-
-['adj', 'format', 'from_dict_of_dicts', 'from_dict_of_lists', 'from_edgelist', 'is_strict', 'to_dict_of_dicts', 'to_dict_of_lists', 'to_edgelist', 'to_networkx_graph']

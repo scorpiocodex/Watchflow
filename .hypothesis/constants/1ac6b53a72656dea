@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\config\schema.py
-# hypothesis_version: 6.151.9
-
-[0.0, 0.6, 1.0, 30.0, 300.0, 500, 1000, 30000, '*', 'after', 'exponential', 'forbid', 'immediate', 'linear']

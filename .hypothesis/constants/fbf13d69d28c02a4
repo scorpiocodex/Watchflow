@@ -1,4 +1,0 @@
-# file: /home/san/project/portfolio/watchflow/src/watchflow/core/state_machine.py
-# hypothesis_version: 6.151.9
-
-['EventBus | None', 'detecting', 'executing', 'idle', 'planning', 'recovering', 'shutting_down', 'watching']

@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\connectivity\edge_kcomponents.py
-# hypothesis_version: 6.151.9
-
-['bridge_components', 'directed', 'k_edge_components', 'k_edge_subgraphs', 'multigraph', 'weight']

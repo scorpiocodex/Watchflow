@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\approximation\clique.py
-# hypothesis_version: 6.151.9
-
-['clique_removal', 'directed', 'large_clique_size', 'max_clique', 'multigraph']

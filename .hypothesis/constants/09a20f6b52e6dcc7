@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\minors\__init__.py
-# hypothesis_version: 6.151.9
-
-['contracted_edge', 'contracted_nodes', 'equivalence_classes', 'identified_nodes', 'quotient_graph']

@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\operators\all.py
-# hypothesis_version: 6.151.9
-
-['[graphs]', 'compose_all', 'disjoint_union_all', 'intersection_all', 'union_all']

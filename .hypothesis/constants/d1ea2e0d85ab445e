@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\planarity.py
-# hypothesis_version: 6.151.9
-
-['DG', 'G', 'PlanarEmbedding', 'S', 'adjs', 'ccw', 'check_planarity', 'cw', 'embedding', 'height', 'is_planar', 'left_ref', 'lowpt', 'lowpt2', 'lowpt_edge', 'nesting_depth', 'ordered_adjs', 'parent_edge', 'ref', 'right_ref', 'roots', 'side', 'stack_bottom']

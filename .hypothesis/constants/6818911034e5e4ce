@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\watchers\watcher_matrix.py
-# hypothesis_version: 6.151.9
-
-[0.0, 5.0, 1000.0, 100, 500, 2000, 'created', 'deleted', 'is_directory', 'modified', 'moved', 'src_path', 'watcher.path_missing', 'watcher.scheduled']

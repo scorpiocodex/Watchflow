@@ -1,4 +1,0 @@
-# file: /home/san/project/portfolio/watchflow/src/watchflow/utils/path_utils.py
-# hypothesis_version: 6.151.9
-
-['.watchflow.yaml', '.watchflow.yml', 'watchflow.yaml', 'watchflow.yml']

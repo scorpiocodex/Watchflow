@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\isomorphism\tree_isomorphism.py
-# hypothesis_version: 6.151.9
-
-['directed', 'multigraph', 't1', 't1 is not a tree', 't2', 't2 is not a tree', 'tree_isomorphism']

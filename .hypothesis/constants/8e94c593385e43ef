@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\dev\python\Project\watchflow\src\watchflow\core\wal.py
-# hypothesis_version: 6.151.9
-
-['.watchflow', 'DELETE FROM events', 'confidence', 'duration_ms', 'error', 'event_type', 'fs', 'intent', 'intent_name', 'is_directory', 'level', 'message', 'path', 'payload', 'pipeline', 'pipeline_name', 'step_name', 'system', 'timestamp', 'unknown', 'wal.db', 'wal.record_error']

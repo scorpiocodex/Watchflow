@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\telemetry\metrics.py
-# hypothesis_version: 6.151.10
-
-[1.0, 2.0, 200, 500, 1024, '.watchflow', 'cpu_percent', 'events', 'failures', 'memory_mb', 'metrics.db', 'pipelines_run', 'success_rate', 'uptime_s']

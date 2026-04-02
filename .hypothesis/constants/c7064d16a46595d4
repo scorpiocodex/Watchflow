@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\traversal\breadth_first_search.py
-# hypothesis_version: 6.151.9
-
-['bfs_edges', 'bfs_labeled_edges', 'bfs_layers', 'bfs_predecessors', 'bfs_successors', 'bfs_tree', 'forward', 'generic_bfs_edges', 'level', 'reverse', 'tree']

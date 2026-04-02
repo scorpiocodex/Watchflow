@@ -1,4 +1,0 @@
-# file: /home/san/project/portfolio/watchflow/src/watchflow/intelligence/intent_detector.py
-# hypothesis_version: 6.151.9
-
-[0.0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 1.0, '*.gql', '*.graphql', '*.proto', '*.py', '*_test.py', '.dockerignore', 'Dockerfile', 'Dockerfile.*', 'IntentRuleConfig', 'Pipfile', 'above_threshold', 'confidence', 'conftest.py', 'docker-compose.yaml', 'docker-compose.yml', 'docker_build', 'format_python', 'input_events', 'install_deps', 'matched_events', 'openapi.yaml', 'openapi.yml', 'package-lock.json', 'package.json', 'path', 'patterns', 'pipeline', 'poetry.lock', 'pyproject.toml', 'pytest.ini', 'reasoning', 'regenerate_schema', 'requirements*.txt', 'rule', 'rules_evaluated', 'run_tests', 'schema.py', 'setup.cfg', 'setup.py', 'test_*.py', 'threshold', 'top_intent', 'total_events', 'type', 'yarn.lock']

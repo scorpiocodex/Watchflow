@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\linalg\attrmatrix.py
-# hypothesis_version: 6.151.9
-
-['attr_matrix', 'attr_sparse_matrix', 'edge_attr', 'node_attr', 'weight']

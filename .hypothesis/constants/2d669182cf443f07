@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\flow\maxflow.py
-# hypothesis_version: 6.151.9
-
-['capacity', 'cutoff', 'flow', 'flowG', 'flow_value', 'inf', 'maximum_flow', 'maximum_flow_value', 'minimum_cut', 'minimum_cut_value']

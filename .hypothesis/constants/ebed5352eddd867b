@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\classes\graph.py
-# hypothesis_version: 6.151.9
-
-['Graph', '_NODE_OK', '_adj', '_node', 'adj', 'backend', 'degree', 'edges', 'graph__new__', 'hashable', 'iter', 'name', 'networkx', 'nodes', 'weight']

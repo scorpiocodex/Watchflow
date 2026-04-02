@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\distance_measures.py
-# hypothesis_version: 6.151.9
-
-[1.0, 'attr', 'barycenter', 'center', 'diameter', 'directed', 'eccentricities', 'eccentricity', 'harmonic_diameter', 'ignore', 'inf', 'kemeny_constant', 'periphery', 'radius', 'resistance_distance', 'weight']

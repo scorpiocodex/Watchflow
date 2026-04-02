@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\generators\mycielski.py
-# hypothesis_version: 6.151.9
-
-['directed', 'multigraph', 'must satisfy n >= 1', 'mycielski_graph', 'mycielskian']

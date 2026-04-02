@@ -1,4 +1,0 @@
-# file: C:\Users\scorp\AppData\Roaming\Python\Python314\site-packages\networkx\algorithms\flow\boykovkolmogorov.py
-# hypothesis_version: 6.151.9
-
-['algorithm', 'boykov_kolmogorov', 'capacity', 'flow', 'flow_value', 'inf', 'trees']
