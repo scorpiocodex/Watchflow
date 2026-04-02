@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\utils\helpers.py
+# hypothesis_version: 6.151.10
+
+[0.0, 1000.0, 30000.0, 1000, 65536, '\\{(\\w+)\\}', 'rb']

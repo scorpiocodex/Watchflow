@@ -43,7 +43,7 @@ class TelemetryStore:
         self._pipeline_count = 0
         self._failure_count = 0
         self._started_at = time.monotonic()
-        
+
         if db_path is None:
             db_dir = Path.home() / ".watchflow"
             db_dir.mkdir(parents=True, exist_ok=True)
@@ -66,7 +66,7 @@ class TelemetryStore:
                     success INTEGER NOT NULL,
                     duration_ms REAL NOT NULL
                 )
-                """
+            """
             )
             self._conn.execute(
                 """
@@ -76,10 +76,11 @@ class TelemetryStore:
                     cpu_percent REAL NOT NULL,
                     memory_mb REAL NOT NULL
                 )
-                """
+            """
             )
 
     def record_pipeline(self, name: str, success: bool, duration_ms: float) -> None:
+        """Record a pipeline execution."""
         metric = PipelineMetric(name, success, duration_ms)
         self._pipeline_metrics.append(metric)
         if len(self._pipeline_metrics) > self._MAX_HISTORY:
@@ -87,7 +88,7 @@ class TelemetryStore:
         self._pipeline_count += 1
         if not success:
             self._failure_count += 1
-            
+
         try:
             with self._conn:
                 self._conn.execute(
@@ -98,9 +99,11 @@ class TelemetryStore:
             log.error("metrics.record_pipeline_error", exc=str(e))
 
     def record_event(self) -> None:
+        """Record a filesystem event (non-blocking, in-memory only)."""
         self._event_count += 1
 
     def record_resource(self, cpu: float, mem_mb: float) -> None:
+        """Record resource usage."""
         self._resource_snapshots.append(ResourceSnapshot(cpu, mem_mb))
         try:
             with self._conn:

@@ -38,15 +38,17 @@ class ReactiveEngine:
     """Wire together all WatchFlow subsystems and run the main event loop."""
 
     def __init__(
-        self, 
-        config: GlobalConfig, 
+        self,
+        config: GlobalConfig,
         console: Console | None = None,
         config_path: Path | None = None,
         dry_run: bool = False,
     ) -> None:
         self.config = config
         self._config_path = config_path
-        self._config_mtime = config_path.stat().st_mtime if config_path and config_path.exists() else 0.0
+        self._config_mtime = (
+            config_path.stat().st_mtime if config_path and config_path.exists() else 0.0
+        )
         self._console = console or Console()
         self._bus = EventBus()
         self._state = ReactiveStateMachine(bus=self._bus)
@@ -55,8 +57,7 @@ class ReactiveEngine:
         self._hook_registry = HookRegistry()
         pipeline_names = {p.name for p in config.pipelines}
         self._intent_detector = IntentDetector(
-            user_rules=config.intent_rules, 
-            allowed_pipelines=pipeline_names
+            user_rules=config.intent_rules, allowed_pipelines=pipeline_names
         )
         self._router = SignalRouter(config, self._intent_detector)
         self._dag_engine = DAGEngine(bus=self._bus, dry_run=dry_run)
@@ -73,7 +74,9 @@ class ReactiveEngine:
         register_builtin_plugins(self._hook_registry)
 
     @classmethod
-    def from_config_file(cls, path: Path, console: Console | None = None, dry_run: bool = False) -> ReactiveEngine:
+    def from_config_file(
+        cls, path: Path, console: Console | None = None, dry_run: bool = False
+    ) -> ReactiveEngine:
         """Load config from *path* and return a fully-wired engine."""
         config = load_config(path)
         return cls(config, console=console, config_path=path, dry_run=dry_run)
@@ -89,11 +92,12 @@ class ReactiveEngine:
 
         # Setup signal handlers
         import contextlib
+
         loop = asyncio.get_running_loop()
         for sig in (signal.SIGINT, signal.SIGTERM):
             with contextlib.suppress(NotImplementedError):
                 loop.add_signal_handler(sig, lambda: asyncio.ensure_future(self.stop()))
-        
+
         # Configure watchers
         self._watcher_matrix.setup(self.config.watchers)
 
@@ -113,6 +117,7 @@ class ReactiveEngine:
 
         # Start TUI only if not in daemon mode
         import os
+
         if os.environ.get("WATCHFLOW_DAEMON") != "1":
             self._renderer.start()
 
@@ -146,6 +151,7 @@ class ReactiveEngine:
         await self._supervisor.cancel_all(timeout=5.0)
         self._renderer.stop()
         self._wal.close()
+        self._store.close()
         self._stop_event.set()
         log.info("engine.stopped")
 
@@ -154,8 +160,7 @@ class ReactiveEngine:
         while self._running:
             try:
                 event = await asyncio.wait_for(queue.get(), timeout=2.0)
-                # We can block briefly, WAL uses sqlite thread-safe
-                self._wal.record(event)
+                await asyncio.to_thread(self._wal.record, event)
             except TimeoutError:
                 continue
 
@@ -184,7 +189,7 @@ class ReactiveEngine:
             self._pipeline_map = {p.name: p for p in new_config.pipelines}
             pipeline_names = {p.name for p in new_config.pipelines}
             self._intent_detector = IntentDetector(
-                user_rules=new_config.intent_rules, 
+                user_rules=new_config.intent_rules,
                 allowed_pipelines=pipeline_names,
             )
             self._router = SignalRouter(new_config, self._intent_detector)
@@ -255,7 +260,10 @@ class ReactiveEngine:
                         speculative_pipeline = self._pipeline_map.get(speculative.pipeline_name)
                         if speculative_pipeline:
                             # Run pre-warm blindly in the background
-                            self._supervisor.spawn("pre_warm_" + speculative.pipeline_name, self._dag_engine.pre_warm(speculative_pipeline))
+                            self._supervisor.spawn(
+                                "pre_warm_" + speculative.pipeline_name,
+                                self._dag_engine.pre_warm(speculative_pipeline),
+                            )
 
                 await self._safe_transition(State.WATCHING)
                 continue
@@ -322,7 +330,7 @@ class ReactiveEngine:
                 )
                 await self._safe_transition(State.WATCHING)
             else:
-                error_msg = (result.error if result else "Unknown error")
+                error_msg = result.error if result else "Unknown error"
                 await self._hook_registry.fire(
                     HookPoint.ON_FAILURE,
                     pipeline_name=pipeline.name,
@@ -338,6 +346,4 @@ class ReactiveEngine:
                 await self._safe_transition(State.WATCHING)
 
             if result:
-                self._store.record_pipeline(
-                    pipeline.name, result.success, result.total_duration_ms
-                )
+                self._store.record_pipeline(pipeline.name, result.success, result.total_duration_ms)

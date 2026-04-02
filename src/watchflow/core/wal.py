@@ -43,9 +43,7 @@ class WriteAheadLog:
                 )
                 """
             )
-            self._conn.execute(
-                "CREATE INDEX IF NOT EXISTS idx_timestamp ON events(timestamp)"
-            )
+            self._conn.execute("CREATE INDEX IF NOT EXISTS idx_timestamp ON events(timestamp)")
 
     def record(self, event: AnyEvent) -> None:
         """Record an event to the WAL."""
@@ -99,11 +97,13 @@ class WriteAheadLog:
         cursor.execute("SELECT timestamp, event_type, payload FROM events ORDER BY timestamp ASC")
         results = []
         for row in cursor:
-            results.append({
-                "timestamp": row["timestamp"],
-                "event_type": row["event_type"],
-                "payload": json.loads(row["payload"]),
-            })
+            results.append(
+                {
+                    "timestamp": row["timestamp"],
+                    "event_type": row["event_type"],
+                    "payload": json.loads(row["payload"]),
+                }
+            )
         return results
 
     def clear(self) -> None:

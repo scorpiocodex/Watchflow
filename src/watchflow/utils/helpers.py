@@ -18,11 +18,19 @@ def substitute_template(template: str, context: dict[str, Any]) -> str:
 
     Unknown keys are left as-is (no KeyError raised).
     """
+
     def _replace(match: re.Match[str]) -> str:
         key = match.group(1).strip()
         return str(context.get(key, match.group(0)))
 
     return re.sub(r"\{(\w+)\}", _replace, template)
+
+
+def split_command(cmd: str) -> list[str]:
+    """Split a command string into list of arguments using shlex (respects quotes)."""
+    import shlex
+
+    return shlex.split(cmd)
 
 
 def hash_file(path: Path, chunk_size: int = 65536) -> str | None:

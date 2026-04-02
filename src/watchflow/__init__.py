@@ -5,7 +5,7 @@ from __future__ import annotations
 import sys
 import warnings
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __author__ = "ScorpioCodeX"
 
 # Install uvloop on Linux/macOS for performance.

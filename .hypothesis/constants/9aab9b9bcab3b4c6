@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\hooks\plugin_system.py
+# hypothesis_version: 6.151.9
+
+[100, '__name__', 'after_pipeline', 'anonymous', 'before_pipeline', 'callback', 'hook', 'hook.callback_failed', 'hook.registered', 'on_failure', 'on_idle', 'on_intent_detected', 'on_repeat_failure', 'on_shutdown', 'on_startup', 'plugin', 'priority']

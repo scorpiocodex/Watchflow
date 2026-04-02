@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import threading
 from collections import deque
 from collections.abc import Callable, Coroutine
@@ -15,7 +16,7 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 from watchflow.core.events import FileSystemEvent, FSEventType
-from watchflow.utils.helpers import current_ms, hash_file, matches_ignore_pattern
+from watchflow.utils.helpers import current_ms, matches_ignore_pattern
 
 if TYPE_CHECKING:
     from watchflow.config.schema import WatcherConfig
@@ -93,7 +94,7 @@ class _WatchdogBridge(FileSystemEventHandler):
         self._lock = threading.Lock()
         self._batch: _PendingBatch = _PendingBatch()
         self._timer: threading.Timer | None = None
-        self._file_hashes: dict[str, str | None] = {}
+        self._file_sigs: dict[str, tuple[float, int] | None] = {}
 
     def _matches(self, path: str) -> bool:
         import fnmatch
@@ -102,17 +103,23 @@ class _WatchdogBridge(FileSystemEventHandler):
         if matches_ignore_pattern(path, self._config.ignore):
             return False
         return any(
-            fnmatch.fnmatch(name, p) or fnmatch.fnmatch(path, p)
-            for p in self._config.patterns
+            fnmatch.fnmatch(name, p) or fnmatch.fnmatch(path, p) for p in self._config.patterns
         )
 
-    def _hash_changed(self, path: str) -> bool:
+    def _stat_signature(self, path: str) -> tuple[float, int] | None:
+        try:
+            stat = os.stat(path)
+            return (stat.st_mtime, stat.st_size)
+        except OSError:
+            return None
+
+    def _content_changed(self, path: str) -> bool:
         if not self._config.hash_check:
             return True
-        new_hash = hash_file(Path(path))
-        old_hash = self._file_hashes.get(path)
-        self._file_hashes[path] = new_hash
-        return new_hash != old_hash
+        new_sig = self._stat_signature(path)
+        old_sig = self._file_sigs.get(path)
+        self._file_sigs[path] = new_sig
+        return new_sig != old_sig
 
     def _map_event_type(self, event_type: str) -> FSEventType:
         return {
@@ -131,7 +138,7 @@ class _WatchdogBridge(FileSystemEventHandler):
 
         if not self._matches(src_path):
             return
-        if not self._hash_changed(src_path):
+        if not self._content_changed(src_path):
             return
 
         self._debouncer.record_event()

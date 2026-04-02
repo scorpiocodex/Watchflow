@@ -1,0 +1,4 @@
+# file: C:\Users\scorp\dev\python\Other\watchflow\src\watchflow\core\state_machine.py
+# hypothesis_version: 6.151.9
+
+['detecting', 'executing', 'idle', 'planning', 'recovering', 'shutting_down', 'watching']

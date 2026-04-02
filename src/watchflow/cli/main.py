@@ -31,16 +31,17 @@ err_console = Console(stderr=True)
 
 # ─── Version ──────────────────────────────────────────────────────────────────
 
+
 def _version_callback(value: bool) -> None:
     if value:
         import watchflow
-        console.print(
-            f"[bold cyan]◢ 𝙒𝘼𝙏𝘾𝙃𝙁𝙇𝙊𝙒[/bold cyan] [white]v{watchflow.__version__}[/white] ◣"
-        )
+
+        console.print(f"[bold cyan]◢  WatchFlow v{watchflow.__version__} ◣[/bold cyan]")
         raise typer.Exit()
 
 
 # ─── Global callback (version + debug flags) ──────────────────────────────────
+
 
 @app.callback(invoke_without_command=True)
 def _global(
@@ -48,7 +49,8 @@ def _global(
     version: Annotated[
         bool,
         typer.Option(
-            "--version", "-V",
+            "--version",
+            "-V",
             callback=_version_callback,
             is_eager=True,
             help="Show the version and exit.",
@@ -66,9 +68,10 @@ def _global(
     """⚡ WatchFlow — Nexus A.I. Reactive Automation Terminal."""
     # Set debug flag implicitly
     import os
+
     if debug:
         os.environ["WATCHFLOW_DEBUG"] = "1"
-        
+
     from watchflow import configure_logging
 
     configure_logging(debug=debug)
@@ -96,6 +99,7 @@ def _print_header() -> None:
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
+
 
 def _find_config(config: Path | None) -> Path:
     """Locate a config file or exit with a helpful error."""
@@ -154,6 +158,7 @@ def _pkg_version(name: str) -> str:
 
 # ─── Commands ─────────────────────────────────────────────────────────────────
 
+
 @app.command()
 def run(
     config: Annotated[
@@ -162,7 +167,9 @@ def run(
     ] = None,
     dry_run: Annotated[
         bool,
-        typer.Option("--dry-run", help="Simulate pipeline execution without running actual shell commands."),
+        typer.Option(
+            "--dry-run", help="Simulate pipeline execution without running actual shell commands."
+        ),
     ] = False,
 ) -> None:
     """Start the WatchFlow engine with live TUI."""
@@ -172,8 +179,7 @@ def run(
 
     cfg_path = _find_config(config)
     console.print(
-        f"  [dim]Config:[/dim] [cyan]{cfg_path}[/cyan]  "
-        "[dim]│  Press Ctrl+C to stop[/dim]"
+        f"  [dim]Config:[/dim] [cyan]{cfg_path}[/cyan]  [dim]│  Press Ctrl+C to stop[/dim]"
     )
 
     engine = ReactiveEngine.from_config_file(cfg_path, console=console, dry_run=dry_run)
@@ -186,10 +192,11 @@ def run(
 
     _print_summary(engine.store)
 
+
 def _print_summary(store: Any) -> None:
     """Print a session summary when the engine stops."""
     from rich.panel import Panel
-    
+
     summary = store.summary()
     t = Text()
     t.append("✔ ", style="bold green")
@@ -197,9 +204,9 @@ def _print_summary(store: Any) -> None:
     t.append(f"Uptime: {summary['uptime_s']:.0f}s  ", style="dim white")
     t.append(f"Events: {summary['events']}  ", style="dim cyan")
     t.append(f"Pipelines: {summary['pipelines_run']} ", style="dim green")
-    if summary['failures'] > 0:
+    if summary["failures"] > 0:
         t.append(f"({summary['failures']} failed) ", style="bold red")
-    
+
     console.print("\n")
     console.print(Panel(t, border_style="dim blue", expand=False))
 
@@ -231,8 +238,7 @@ def init(
 
     console.print(f"\n  [green]✔[/green]  Created [bold]{out}[/bold]")
     console.print(
-        "  Edit the file to customise pipelines, then run "
-        "[bold cyan]watchflow run[/bold cyan].\n"
+        "  Edit the file to customise pipelines, then run [bold cyan]watchflow run[/bold cyan].\n"
     )
 
 
@@ -465,10 +471,9 @@ def plugins(
         table.add_row(r["hook"], r["plugin"], str(r["priority"]), r["callback"])
 
     console.print(table)
-    console.print(f"\n  [dim]{len(regs)} registration(s) across {len({r['plugin'] for r in regs})} plugin(s)[/dim]\n")
-
-
-
+    console.print(
+        f"\n  [dim]{len(regs)} registration(s) across {len({r['plugin'] for r in regs})} plugin(s)[/dim]\n"
+    )
 
 
 @app.command()
@@ -488,15 +493,26 @@ def info() -> None:
     table.add_column("Value", style="white")
 
     table.add_row("WatchFlow version", f"[bold cyan]{watchflow.__version__}[/bold cyan]")
-    table.add_row("Python version", f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
+    table.add_row(
+        "Python version",
+        f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+    )
     table.add_row("Platform", platform.system())
     table.add_row("OS release", platform.release())
     table.add_row("Architecture", platform.machine())
     table.add_row("Python executable", sys.executable)
 
     pkg_list = [
-        "typer", "rich", "watchdog", "pydantic", "structlog",
-        "anyio", "networkx", "psutil", "yaml", "uvloop",
+        "typer",
+        "rich",
+        "watchdog",
+        "pydantic",
+        "structlog",
+        "anyio",
+        "networkx",
+        "psutil",
+        "yaml",
+        "uvloop",
     ]
     for pkg in pkg_list:
         try:
@@ -612,6 +628,7 @@ def status(
 
     console.print()
 
+
 @app.command()
 def wal(
     limit: int = typer.Option(50, "--limit", "-l", help="Number of recent events to show."),
@@ -632,28 +649,39 @@ def wal(
 
         events = wal.read_all()
         if not events:
-            console.print(Panel("WAL is empty. No historical events found.", border_style="dim yellow"))
+            console.print(
+                Panel("WAL is empty. No historical events found.", border_style="dim yellow")
+            )
             return
 
         events = events[-limit:]
-        
-        table = Table(title="Time-Travel Event Replay (WAL)", show_header=True, header_style="bold cyan", border_style="dim blue")
+
+        table = Table(
+            title="Time-Travel Event Replay (WAL)",
+            show_header=True,
+            header_style="bold cyan",
+            border_style="dim blue",
+        )
         table.add_column("Time", style="dim white")
         table.add_column("Type", style="bold magenta")
         table.add_column("Details", style="white")
 
         import datetime
+
         for ev in events:
             dt = datetime.datetime.fromtimestamp(ev["timestamp"]).strftime("%H:%M:%S.%f")[:-3]
             typ = ev["event_type"]
             payload = ev["payload"]
-            
+
             if typ == "fs":
                 detail = f"[cyan]{payload.get('event_type')}[/cyan] {payload.get('path')}"
             elif typ == "intent":
                 detail = f"[magenta]{payload.get('intent_name')}[/magenta] [dim]({payload.get('confidence'):.0%})[/dim] → {payload.get('pipeline_name')}"
             elif typ == "pipeline":
-                success = payload.get('event_type') == "COMPLETED" or payload.get('event_type') == "STEP_COMPLETED"
+                success = (
+                    payload.get("event_type") == "COMPLETED"
+                    or payload.get("event_type") == "STEP_COMPLETED"
+                )
                 color = "green" if success else "red"
                 detail = f"[{color}]{payload.get('event_type')}[/{color}] {payload.get('pipeline_name')} {payload.get('step_name') or ''}"
             else:
@@ -664,6 +692,7 @@ def wal(
         console.print(table)
     finally:
         wal.close()
+
 
 @app.command()
 def analytics(
@@ -678,7 +707,9 @@ def analytics(
 
     db_path = Path.home() / ".watchflow" / "metrics.db"
     if not db_path.exists():
-        console.print(Panel("No analytics data found. Run pipelines first.", border_style="dim yellow"))
+        console.print(
+            Panel("No analytics data found. Run pipelines first.", border_style="dim yellow")
+        )
         return
 
     conn = sqlite3.connect(str(db_path))
@@ -686,20 +717,29 @@ def analytics(
     try:
         # Pipeline metrics
         cursor = conn.cursor()
-        cursor.execute("SELECT pipeline_name, success, duration_ms, timestamp FROM pipeline_metrics ORDER BY timestamp DESC LIMIT ?", (limit,))
+        cursor.execute(
+            "SELECT pipeline_name, success, duration_ms, timestamp FROM pipeline_metrics ORDER BY timestamp DESC LIMIT ?",
+            (limit,),
+        )
         rows = cursor.fetchall()
 
         if not rows:
             console.print(Panel("No pipeline executions recorded.", border_style="dim yellow"))
             return
 
-        table = Table(title="Recent Pipeline Executions (Cross-Session)", show_header=True, header_style="bold blue", border_style="dim cyan")
+        table = Table(
+            title="Recent Pipeline Executions (Cross-Session)",
+            show_header=True,
+            header_style="bold blue",
+            border_style="dim cyan",
+        )
         table.add_column("Time", style="dim white")
         table.add_column("Pipeline", style="cyan")
         table.add_column("Result", justify="center")
         table.add_column("Duration", justify="right")
 
         import datetime
+
         for row in rows:
             dt = datetime.datetime.fromtimestamp(row["timestamp"]).strftime("%m/%d %H:%M:%S")
             success = "✔" if row["success"] else "✖"
@@ -709,7 +749,7 @@ def analytics(
 
         console.print()
         console.print(table)
-        
+
         # Aggregate stats
         cursor.execute("SELECT COUNT(*) as total, SUM(success) as ok FROM pipeline_metrics")
         stats = cursor.fetchone()
@@ -718,8 +758,10 @@ def analytics(
             ok = stats["ok"] or 0
             fail = total - ok
             rate = ok / total
-            
-            summary = Table(title="Global Lifetime Stats", show_header=False, border_style="dim blue")
+
+            summary = Table(
+                title="Global Lifetime Stats", show_header=False, border_style="dim blue"
+            )
             summary.add_column("Metric", style="white")
             summary.add_column("Value", style="bold cyan", justify="right")
             summary.add_row("Total Executions", str(total))
@@ -732,25 +774,32 @@ def analytics(
     finally:
         conn.close()
 
-def _global_exception_handler(exc_type: type[BaseException], exc_value: BaseException, exc_traceback: Any) -> None:
+
+def _global_exception_handler(
+    exc_type: type[BaseException], exc_value: BaseException, exc_traceback: Any
+) -> None:
     if issubclass(exc_type, (KeyboardInterrupt, SystemExit)):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
-        
+
     import os
 
     from rich.panel import Panel
-    
+
     if os.environ.get("WATCHFLOW_DEBUG") == "1":
         from rich.traceback import Traceback
+
         err_console.print(Traceback.from_exception(exc_type, exc_value, exc_traceback))
     else:
-        err_console.print(Panel(
-            f"[red]{str(exc_value)}[/red]\n\n[dim]Run with --debug or WATCHFLOW_DEBUG=1 for full traceback.[/dim]", 
-            title=f"[bold red]WatchFlow Error: {exc_type.__name__}[/bold red]", 
-            border_style="red"
-        ))
+        err_console.print(
+            Panel(
+                f"[red]{str(exc_value)}[/red]\n\n[dim]Run with --debug or WATCHFLOW_DEBUG=1 for full traceback.[/dim]",
+                title=f"[bold red]WatchFlow Error: {exc_type.__name__}[/bold red]",
+                border_style="red",
+            )
+        )
     sys.exit(1)
+
 
 sys.excepthook = _global_exception_handler
 

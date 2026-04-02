@@ -11,8 +11,8 @@ import networkx as nx
 import structlog
 
 from watchflow.core.events import PipelineEvent, PipelineEventType
-from watchflow.utils.helpers import calculate_backoff, substitute_template
-from watchflow.utils.process_helpers import ProcessManager, ProcessResult
+from watchflow.utils.helpers import calculate_backoff, split_command, substitute_template
+from watchflow.utils.process_helpers import ProcessManager, ProcessResult, substitute_args
 
 if TYPE_CHECKING:
     from watchflow.config.schema import CommandConfig, PipelineConfig
@@ -80,9 +80,7 @@ class DAGEngine:
                 for generation in generations:
                     if failed and pipeline.fail_fast:
                         for name in generation:
-                            step_results[name] = StepResult(
-                                name=name, success=False, skipped=True
-                            )
+                            step_results[name] = StepResult(name=name, success=False, skipped=True)
                         continue
 
                     cmd_map = {cmd.name: cmd for cmd in pipeline.commands}
@@ -190,18 +188,19 @@ class DAGEngine:
             )
 
         start = time.monotonic()
-        resolved_cmd = substitute_template(cmd.cmd, ctx)
+        cmd_args = split_command(substitute_template(cmd.cmd, ctx))
+        cmd_args = substitute_args(cmd_args, ctx)
         cwd = Path(cmd.cwd) if cmd.cwd else None
 
         last_result: ProcessResult | None = None
         attempts = 0
-        
+
         if self._dry_run:
-            log.info("dag.dry_run", step=cmd.name, cmd=resolved_cmd)
+            log.info("dag.dry_run", step=cmd.name, cmd=" ".join(cmd_args))
             await asyncio.sleep(0.01)
             last_result = ProcessResult(
                 returncode=0,
-                stdout=f"DRY RUN: Skipped execution of '{resolved_cmd}'",
+                stdout=f"DRY RUN: Skipped execution of '{' '.join(cmd_args)}'",
                 stderr="",
                 duration_ms=10.0,
             )
@@ -210,7 +209,7 @@ class DAGEngine:
             for attempt in range(cmd.retry + 1):
                 attempts = attempt + 1
                 last_result = await self._proc_manager.run(
-                    resolved_cmd,
+                    cmd_args,
                     cwd=cwd,
                     env=cmd.env or {},
                     timeout=cmd.timeout,
@@ -230,11 +229,11 @@ class DAGEngine:
         duration_ms = (time.monotonic() - start) * 1000
         assert last_result is not None
         success = last_result.success
-        
+
         error_msg = last_result.stderr if not success else ""
         if not success and error_msg:
             error_msg += self._analyze_failure(error_msg)
-            
+
         step = StepResult(
             name=cmd.name,
             success=success,
@@ -286,7 +285,9 @@ class DAGEngine:
         try:
             generations = list(nx.topological_generations(graph))
         except nx.NetworkXUnfeasible:
-            return Text(f"Pipelines '{pipeline.name}' has cycles — cannot visualize", style="red bold")
+            return Text(
+                f"Pipelines '{pipeline.name}' has cycles — cannot visualize", style="red bold"
+            )
 
         for i, gen in enumerate(generations):
             layer_node = tree.add(f"[magenta]Layer {i}[/magenta]")
@@ -294,10 +295,12 @@ class DAGEngine:
                 # find the command config to show details
                 cmd = next((c for c in pipeline.commands if c.name == node_name), None)
                 if cmd:
-                    deps = f"[dim] (deps: {','.join(cmd.depends_on)})[/dim]" if cmd.depends_on else ""
+                    deps = (
+                        f"[dim] (deps: {','.join(cmd.depends_on)})[/dim]" if cmd.depends_on else ""
+                    )
                     timeout = f"[dim] (timeout: {cmd.timeout}s)[/dim]" if cmd.timeout else ""
                     layer_node.add(f"[green]■[/green] {node_name}{deps}{timeout}")
                 else:
                     layer_node.add(f"[green]■[/green] {node_name}")
-                    
+
         return tree
