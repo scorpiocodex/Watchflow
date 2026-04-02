@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from watchflow.config.schema import (
     CommandConfig,
     GlobalConfig,

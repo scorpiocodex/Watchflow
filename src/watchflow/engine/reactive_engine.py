@@ -183,6 +183,8 @@ class ReactiveEngine:
                 log.error("engine.config_reload_error", exc=str(e))
 
     def _reload_config(self) -> None:
+        if self._config_path is None:
+            return
         try:
             new_config = load_config(self._config_path)
             self.config = new_config

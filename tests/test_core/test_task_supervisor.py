@@ -8,8 +8,8 @@ import pytest
 
 from watchflow.core.task_supervisor import TaskSupervisor
 
-
 # ─── Simple spawn ──────────────────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_spawn_simple_coroutine() -> None:
@@ -59,6 +59,7 @@ async def test_cancel_all_stops_tasks() -> None:
 
 
 # ─── Factory-based restart ─────────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_spawn_with_factory_runs_factory() -> None:
@@ -129,9 +130,7 @@ async def test_supervised_reraises_after_max_restarts() -> None:
         attempt_count.append(1)
         raise RuntimeError("always fail")
 
-    task = supervisor.spawn(
-        "doomed", _dummy(), restart_on_failure=True, factory=_always_fails
-    )
+    task = supervisor.spawn("doomed", _dummy(), restart_on_failure=True, factory=_always_fails)
     # With max_restarts=3 and exponential waits the test would be too slow.
     # We patch by directly calling _supervised with max_restarts=0.
     task.cancel()
@@ -145,15 +144,14 @@ async def test_supervised_reraises_after_max_restarts() -> None:
         calls2.append(1)
         raise ValueError("boom")
 
-    result_task = asyncio.create_task(
-        sup2._supervised("t", _fail_factory, max_restarts=0)
-    )
+    result_task = asyncio.create_task(sup2._supervised("t", _fail_factory, max_restarts=0))
     with pytest.raises((ValueError, Exception)):
         await result_task
     assert calls2 == [1]
 
 
 # ─── Active names ──────────────────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_active_names_empty_initially() -> None:

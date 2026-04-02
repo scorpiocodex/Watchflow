@@ -25,6 +25,7 @@ intent_rules:
 
 # ─── info ─────────────────────────────────────────────────────────────────────
 
+
 def test_info_command() -> None:
     result = runner.invoke(app, ["info"])
     assert result.exit_code == 0
@@ -42,6 +43,7 @@ def test_info_shows_versions() -> None:
 
 # ─── --version ────────────────────────────────────────────────────────────────
 
+
 def test_version_flag() -> None:
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
@@ -58,6 +60,7 @@ def test_version_short_flag() -> None:
 
 # ─── doctor ───────────────────────────────────────────────────────────────────
 
+
 def test_doctor_command() -> None:
     result = runner.invoke(app, ["doctor"])
     assert result.exit_code == 0
@@ -72,6 +75,7 @@ def test_doctor_shows_packages() -> None:
 
 
 # ─── validate ─────────────────────────────────────────────────────────────────
+
 
 def test_validate_command_valid(tmp_path: Path) -> None:
     config = tmp_path / "watchflow.yaml"
@@ -102,6 +106,7 @@ def test_validate_missing_config(tmp_path: Path) -> None:
 
 
 # ─── explain ──────────────────────────────────────────────────────────────────
+
 
 def test_explain_command() -> None:
     result = runner.invoke(app, ["explain", "src/test_api.py"])
@@ -136,6 +141,7 @@ def test_explain_unmatched_file() -> None:
 
 # ─── graph ────────────────────────────────────────────────────────────────────
 
+
 def test_graph_command(tmp_path: Path) -> None:
     config = tmp_path / "watchflow.yaml"
     config.write_text(
@@ -165,6 +171,7 @@ def test_graph_missing_pipeline(tmp_path: Path) -> None:
 
 # ─── plugins ──────────────────────────────────────────────────────────────────
 
+
 def test_plugins_command() -> None:
     result = runner.invoke(app, ["plugins"])
     assert result.exit_code == 0
@@ -187,6 +194,7 @@ def test_plugins_shows_registration_count() -> None:
 
 
 # ─── status ───────────────────────────────────────────────────────────────────
+
 
 def test_status_command(tmp_path: Path) -> None:
     config = tmp_path / "watchflow.yaml"
@@ -227,6 +235,7 @@ def test_status_missing_config(tmp_path: Path) -> None:
 
 # ─── init ─────────────────────────────────────────────────────────────────────
 
+
 def test_init_creates_config(tmp_path: Path) -> None:
     out = tmp_path / "watchflow.yaml"
     result = runner.invoke(
@@ -256,7 +265,7 @@ def test_init_no_overwrite_by_default(tmp_path: Path) -> None:
     out = tmp_path / "watchflow.yaml"
     out.write_text("existing: content\n")
     # Respond 'n' to the overwrite prompt
-    result = runner.invoke(
+    runner.invoke(
         app,
         ["init", "--output", str(out)],
         input="n\n",

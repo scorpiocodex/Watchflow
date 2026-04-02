@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import io
+
 import pytest
 
 from watchflow.config.schema import CommandConfig, PipelineConfig, RetryStrategy
@@ -85,7 +87,7 @@ async def test_template_substitution() -> None:
 
 @pytest.mark.asyncio
 async def test_total_timeout() -> None:
-    cmds = [make_cmd("slow", "python -c \"import time; time.sleep(10)\"")]
+    cmds = [make_cmd("slow", 'python -c "import time; time.sleep(10)"')]
     pipeline = make_pipeline(*cmds, total_timeout=0.1)
     engine = DAGEngine()
     result = await engine.execute(pipeline)
@@ -112,15 +114,15 @@ def test_visualize() -> None:
     pipeline = make_pipeline(*cmds)
     engine = DAGEngine()
     art = engine.visualize(pipeline)
-    
+
     # Render the tree to a string for testing
     from rich.console import Console
-    import io
-    
-    console = Console(file=io.StringIO(), force_terminal=False)
+
+    buffer = io.StringIO()
+    console = Console(file=buffer, force_terminal=False)
     console.print(art)
-    output = console.file.getvalue()
-    
+    output = buffer.getvalue()
+
     assert "build" in output
     assert "test" in output
     assert "Layer" in output

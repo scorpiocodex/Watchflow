@@ -80,7 +80,7 @@ class SignalRouter:
         if not hasattr(self._detector, "speculate"):
             return None
 
-        result: getattr(IntentResult, "IntentResult", Any) | None = self._detector.speculate(events)
+        result: "IntentResult | None" = self._detector.speculate(events)
         if result is None:
             return None
 
