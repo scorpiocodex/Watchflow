@@ -10,8 +10,6 @@ import structlog
 from watchflow.core.events import FileSystemEvent
 
 if TYPE_CHECKING:
-    from typing import Any
-
     from watchflow.config.schema import GlobalConfig
     from watchflow.intelligence.intent_detector import IntentDetector, IntentResult
 
@@ -80,7 +78,7 @@ class SignalRouter:
         if not hasattr(self._detector, "speculate"):
             return None
 
-        result: "IntentResult | None" = self._detector.speculate(events)
+        result: IntentResult | None = self._detector.speculate(events)
         if result is None:
             return None
 
